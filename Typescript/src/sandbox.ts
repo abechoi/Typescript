@@ -15,7 +15,7 @@ let numbers = [10, 20, 30, 40];
 //numbers.push("shaun"); // cannot add string type of a number type array
 
 // initialize array with mixed types to add multiple types
-let mixed = ['ken', 4, 'chunk-li', 8, 9, true];
+let mixed1 = ['ken', 4, 'chunk-li', 8, 9, true];
 
 // objects
 let ninja = {
@@ -35,3 +35,41 @@ ninja = {
   belt: "orange",
   age: 40
 }
+
+// explicit types
+let character: string;
+let age1: number;
+let isLoggedIn: boolean;
+
+// arrays
+let ninjas: string[] = [];
+
+// union types
+let mixed2: (string|number|boolean)[] = []; // takes string number or boolean
+let uid: string|number;
+
+// objects
+let ninjaOne: object;
+ninjaOne = { name: "Yoshi", age: 30 };
+
+let ninjaTwo: {
+  name: string,
+  age: number,
+  beltColor: string
+}
+
+ninjaTwo = {
+  name: "mario",
+  age: 30,
+  beltColor: "black"
+}
+
+// any type
+let age2: any = 25;
+age2 = true;
+age2 = "hello";
+age2 = {};
+
+let mixed3: any[] = [];
+let people: { name: any, age: any};
+

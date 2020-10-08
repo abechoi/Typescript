@@ -12,3 +12,7 @@ tsc [filename.ts] // if names are the same
 tsc [filename.ts] -w // watch mode
 ```
 
+## Create tsconfig.json
+```
+tsc --init
+```
