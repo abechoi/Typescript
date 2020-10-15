@@ -53,3 +53,23 @@ age2 = "hello";
 age2 = {};
 var mixed3 = [];
 var people;
+// function basics
+var greet;
+greet = function () {
+    console.log('hello, again!');
+};
+var add = function (a, b, c) {
+    if (c === void 0) { c = 10; }
+    console.log(a + b);
+};
+add(5, 10);
+var minus = function (a, b) {
+    return a + b;
+};
+var result = minus(1, 2);
+var logDetails = function (uid, item) {
+    console.log(item + " has a uid of " + uid);
+};
+greet = function (user) {
+    console.log(user.name + " says hello");
+};

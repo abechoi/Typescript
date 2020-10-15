@@ -73,3 +73,31 @@ age2 = {};
 let mixed3: any[] = [];
 let people: { name: any, age: any};
 
+// function basics
+let greet: Function;
+greet = () => {
+  console.log('hello, again!');
+}
+
+const add = (a: number, b: number, c: number | string = 10): void => {
+  console.log(a + b);
+}
+add(5, 10);
+
+const minus = (a: number, b: number): number => {
+  return a + b;
+}
+let result = minus(1, 2);
+
+// type aliases
+
+type StringOrNum = string | number;
+type objWithName = {name: string, uid: StringOrNum};
+
+const logDetails =  (uid: StringOrNum, item: string) => {
+  console.log(`${item} has a uid of ${uid}`);
+}
+
+greet = (user: objWithName) => {
+  console.log(`${user.name} says hello`);
+}
