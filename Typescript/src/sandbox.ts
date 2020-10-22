@@ -101,3 +101,26 @@ const logDetails =  (uid: StringOrNum, item: string) => {
 greet = (user: objWithName) => {
   console.log(`${user.name} says hello`);
 }
+
+// function signatures
+// example 1
+let greet2: (a: string, b: string) => void;
+greet2 = (name: string, greeting: string) => {
+  console.log(`${name}: ${greeting}`);
+};
+greet2("Abe", "Whats poppin?");
+// example 2
+let calc: (a: number, b: number, c: string) => number;
+calc = (numOne: number, numTwo: number, action: string) => {
+  if (action === 'add'){
+    return numOne + numTwo;
+  }else{
+    return numTwo - numTwo;
+  }
+}
+// example 3
+let logDetails2: (obj: {name: string, age: number}) => void;
+type person = {name: string, age: number};
+logDetails2 = (ninja: person) => {
+  console.log(`${ninja.name} is ${ninja.age} years old`);
+}

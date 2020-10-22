@@ -73,3 +73,9 @@ var logDetails = function (uid, item) {
 greet = function (user) {
     console.log(user.name + " says hello");
 };
+// function signatures
+var greet2;
+greet2 = function (name, greeting) {
+    console.log(name + ": " + greeting);
+};
+greet2("Abe", "Whats poppin?");
