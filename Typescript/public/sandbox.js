@@ -74,8 +74,24 @@ greet = function (user) {
     console.log(user.name + " says hello");
 };
 // function signatures
+// example 1
 var greet2;
 greet2 = function (name, greeting) {
     console.log(name + ": " + greeting);
 };
 greet2("Abe", "Whats poppin?");
+// example 2
+var calc;
+calc = function (numOne, numTwo, action) {
+    if (action === 'add') {
+        return numOne + numTwo;
+    }
+    else {
+        return numTwo - numTwo;
+    }
+};
+// example 3
+var logDetails2;
+logDetails2 = function (ninja) {
+    console.log(ninja.name + " is " + ninja.age + " years old");
+};
