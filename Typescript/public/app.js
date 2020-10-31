@@ -1,3 +1,19 @@
+// Create an interface
+const me = {
+    name: "Abe",
+    age: 33,
+    speak(text) {
+        console.log(text);
+    },
+    spend(amount) {
+        console.log('I spent', amount);
+        return amount;
+    }
+};
+const greetPerson = (person) => {
+    console.log("Hello ", person.name);
+};
+greetPerson(me);
 import { Invoice } from "./classes/Invoice.js";
 // DOM
 // Must add ! else it may think anchor is HTMLAnchorElement or NULL.

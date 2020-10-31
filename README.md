@@ -78,6 +78,33 @@ calc = (numOne: number, numTwo: number, action: string) => {
 calc(1,2,"add"); // adds 1 + 2
 ```
 
+## The DOM
+```
+// Add "!" to confirm that the tag exists
+const anchor = document.querySelector('a')!; 
+
+// Add "as HTMLFormElement" to get form by class name
+const form = document.querySelector('.new-item-form') as HTMLFormElement; 
+```
+
+## Inputs
+```
+const type = document.querySelector('#type') as HTMLSelectElement;
+const tofrom = document.querySelector('#tofrom') as HTMLInputElement;
+const details = document.querySelector('#details') as HTMLInputElement;
+const amount = document.querySelector('#amount') as HTMLInputElement;
+
+form.addEventListener('submit', (e: Event) => {
+  e.preventDefault();
+  console.log(
+    type.value,
+    tofrom.value,
+    details.value,
+    amount.valueAsNumber
+  );
+})
+```
+
 ## Objects
 ```
 let ninja = {
@@ -138,30 +165,35 @@ invoices.push(invTwo);
 console.log(invoices);
 ```
 
-## The DOM
+## Interfaces
 ```
-// Add "!" to confirm that the tag exists
-const anchor = document.querySelector('a')!; 
+// Interface
+interface IsPerson{
+  name: string;
+  age: number;
+  speak(a: string): void;
+  spend(a: number): number;
+}
 
-// Add "as HTMLFormElement" to get form by class name
-const form = document.querySelector('.new-item-form') as HTMLFormElement; 
-```
+// Create an interface
+const me: IsPerson = {
+  name: "Abe", 
+  age: 33,
+  speak(text: string){
+    console.log(text);
+  },
+  spend(amount: number): number{
+    console.log('I spent', amount);
+    return amount;
+  }
+};
 
-## Inputs
-```
-const type = document.querySelector('#type') as HTMLSelectElement;
-const tofrom = document.querySelector('#tofrom') as HTMLInputElement;
-const details = document.querySelector('#details') as HTMLInputElement;
-const amount = document.querySelector('#amount') as HTMLInputElement;
+// Function with a parameter of IsPerson interface
+const greetPerson = (person: IsPerson) => {
+  console.log("Hello ", person.name);
+}
 
-form.addEventListener('submit', (e: Event) => {
-  e.preventDefault();
-  console.log(
-    type.value,
-    tofrom.value,
-    details.value,
-    amount.valueAsNumber
-  );
-})
+// Calling the function with an IsPerson interface
+greetPerson(me);
 ```
 
