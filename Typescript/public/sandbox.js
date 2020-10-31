@@ -1,19 +1,19 @@
 "use strict";
 // type basics
-var circ = function (diameter) {
+const circ = (diameter) => {
     return diameter * Math.PI;
 };
 console.log(circ(7.5));
 // arrays
-var names = ["luigi", "mario", "yoshi"];
+let names = ["luigi", "mario", "yoshi"];
 names.push("toad");
 // names.push(3); // cannot add number type to a string type array
-var numbers = [10, 20, 30, 40];
+let numbers = [10, 20, 30, 40];
 //numbers.push("shaun"); // cannot add string type of a number type array
 // initialize array with mixed types to add multiple types
-var mixed1 = ['ken', 4, 'chunk-li', 8, 9, true];
+let mixed1 = ['ken', 4, 'chunk-li', 8, 9, true];
 // objects
-var ninja = {
+let ninja = {
     name: "mario",
     belt: "black",
     age: 30
@@ -29,60 +29,59 @@ ninja = {
     age: 40
 };
 // explicit types
-var character;
-var age1;
-var isLoggedIn;
+let character;
+let age1;
+let isLoggedIn;
 // arrays
-var ninjas = [];
+let ninjas = [];
 // union types
-var mixed2 = []; // takes string number or boolean
-var uid;
+let mixed2 = []; // takes string number or boolean
+let uid;
 // objects
-var ninjaOne;
+let ninjaOne;
 ninjaOne = { name: "Yoshi", age: 30 };
-var ninjaTwo;
+let ninjaTwo;
 ninjaTwo = {
     name: "mario",
     age: 30,
     beltColor: "black"
 };
 // any type
-var age2 = 25;
+let age2 = 25;
 age2 = true;
 age2 = "hello";
 age2 = {};
-var mixed3 = [];
-var people;
+let mixed3 = [];
+let people;
 // function basics
-var greet;
-greet = function () {
+let greet;
+greet = () => {
     console.log('hello, again!');
 };
-var add = function (a, b, c) {
-    if (c === void 0) { c = 10; }
+const add = (a, b, c = 10) => {
     console.log(a + b);
 };
 add(5, 10);
-var minus = function (a, b) {
+const minus = (a, b) => {
     return a + b;
 };
-var result = minus(1, 2);
-var logDetails = function (uid, item) {
-    console.log(item + " has a uid of " + uid);
+let result = minus(1, 2);
+const logDetails = (uid, item) => {
+    console.log(`${item} has a uid of ${uid}`);
 };
-greet = function (user) {
-    console.log(user.name + " says hello");
+greet = (user) => {
+    console.log(`${user.name} says hello`);
 };
 // function signatures
 // example 1
-var greet2;
-greet2 = function (name, greeting) {
-    console.log(name + ": " + greeting);
+let greet2;
+greet2 = (name, greeting) => {
+    console.log(`${name}: ${greeting}`);
 };
 greet2("Abe", "Whats poppin?");
 // example 2
-var calc;
-calc = function (numOne, numTwo, action) {
+let calc;
+calc = (numOne, numTwo, action) => {
     if (action === 'add') {
         return numOne + numTwo;
     }
@@ -91,7 +90,7 @@ calc = function (numOne, numTwo, action) {
     }
 };
 // example 3
-var logDetails2;
-logDetails2 = function (ninja) {
-    console.log(ninja.name + " is " + ninja.age + " years old");
+let logDetails2;
+logDetails2 = (ninja) => {
+    console.log(`${ninja.name} is ${ninja.age} years old`);
 };
