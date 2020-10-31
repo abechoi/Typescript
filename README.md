@@ -123,6 +123,21 @@ class Invoice{
     return `${this.client} owes $${this.amount} for ${this.details}!`;
   }
 }
+
+// Create an invoice class using access modifiers
+class Invoice{
+
+  constructor(
+    readonly client: string,
+    private details: string,
+    public amount: number
+  ){}
+
+  format(){
+    return `${this.client} owes $${this.amount} for ${this.details}!`;
+  }
+}
+
 // Instantiate 2 Invoices
 const invOne = new Invoice('mario', 'work on the mario website', 250);
 const invTwo = new Invoice('luigi', 'work on the luigi website', 300);

@@ -2,23 +2,27 @@
 // Must add ! else it may think anchor is HTMLAnchorElement or NULL.
 // ! = "I know this exists"
 const anchor = document.querySelector('a')!;
-console.log(anchor.href);
-
-// For classes, you must specify tag type with "as HTMLFormElement"
-const form = document.querySelector('.new-item-form') as HTMLFormElement;
-console.log(form.children);
 
 // classes
 class Invoice{
-  client: string;
-  details: string;
-  amount: number;
+  // // readonly cannot be overwritten
+  // readonly client: string;
+  // // private can only be accessed via class
+  // private details: string;
+  // public amount: number;
 
-  constructor(c: string, d: string, a: number){
-    this.client = c;
-    this.details = d;
-    this.amount = a;
-  }
+  // constructor(c: string, d: string, a: number){
+  //   this.client = c;
+  //   this.details = d;
+  //   this.amount = a;
+  // }
+
+  // shorthand
+  constructor(
+    readonly client: string,
+    private details: string,
+    public amount: number
+  ){}
 
   format(){
     return `${this.client} owes $${this.amount} for ${this.details}!`;
@@ -28,15 +32,15 @@ class Invoice{
 const invOne = new Invoice('mario', 'work on the mario website', 250);
 const invTwo = new Invoice('luigi', 'work on the luigi website', 300);
 
-console.log(invOne, invTwo);
-
 let invoices: Invoice[] = [];
 invoices.push(invOne);
 invoices.push(invTwo);
 
-console.log(invoices);
+invoices.forEach(inv => {
+  console.log(inv.client, inv.amount, inv.format());
+});
 
-const form2 = document.querySelector('.new-item-form') as HTMLFormElement;
+const form = document.querySelector('.new-item-form') as HTMLFormElement;
 
 // inputs
 const type = document.querySelector('#type') as HTMLSelectElement;
