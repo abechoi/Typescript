@@ -195,5 +195,107 @@ const greetPerson = (person: IsPerson) => {
 
 // Calling the function with an IsPerson interface
 greetPerson(me);
+
+// Interfaces with classes
+export interface HasFormatter{
+  format(): string;
+}
+
+import { HasFormatter } from "../interfaces/HasFormatter.js";
+
+export class Payment implements HasFormatter{
+  constructor(
+    readonly recipient: string,
+    private details: string,
+    public amount: number
+  ){}
+
+  format(){
+    return `${this.recipient} is owed $${this.amount} for ${this.details}`;
+  }
+}
 ```
 
+## Generics
+```
+// Non-generic example
+const addUID = (obj: Object) => {
+  let uid = Math.floor(Math.random() * 100);
+  return {...obj, uid};
+}
+
+let docOne = addUID({name: "yoshi", age: 40});
+// Cannot call docOne.name because the function is taking any objects
+// thus it does not know that there is a name property.
+console.log(docOne.name);
+
+// Generic example 1
+const addUID = <T>(obj: T) => {
+  let uid = Math.floor(Math.random() * 100);
+  return {...obj, uid};
+}
+
+let docOne = addUID({name: "yoshi", age: 40});
+// Never read because "hello" is a string not an object
+let docTwo = addUID("hello");
+
+// docOne.name is called because function now takes a generic
+console.log(docOne.name);
+
+// Generic example 2
+// addUID only takes an object with a name property of string type
+const addUID = <T extends {name: string}>(obj: T) => {
+  let uid = Math.floor(Math.random() * 100);
+  return {...obj, uid};
+}
+
+let docOne = addUID({name: "yoshi", age: 40});
+// Never read because the object does not take a name property of string type
+let docTwo = addUID({"Hello});
+
+console.log(docOne.name);
+
+// Example with interfaces 1
+interface Resource{
+  uid: number;
+  resourceName: string;
+  data: object;
+}
+const docThree: Resource = {
+  uid: 1,
+  resourceName: 'person',
+  data: "Abe" // Throws error due to data being object type
+}
+
+// Example with interfaces 2
+// Set data to a generic type
+interface Resource<T>{
+  uid: number;
+  resourceName: string;
+  data: T;
+}
+
+// Set the generic type to string
+const docThree: Resource<string> = {
+  uid: 1,
+  resourceName: 'person',
+  data: "Abe" // No error
+}
+
+// Example with interfaces 3
+interface Resource<T>{
+  uid: number;
+  resourceName: string;
+  data: T;
+}
+const docThree: Resource<string> = {
+  uid: 1,
+  resourceName: 'person',
+  data: "Abe"
+}
+const docFour: Resource<string[]> = {
+  uid: 2,
+  resourceName: 'shoppingList',
+  data: ['bread', 'milk']
+}
+```

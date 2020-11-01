@@ -25,62 +25,14 @@ const greetPerson = (person: IsPerson) => {
 greetPerson(me);
 
 import { Invoice } from "./classes/Invoice.js";
+import { ListTemplate } from "./classes/ListTemplate.js";
 import { Payment } from "./classes/Payment.js";
 import { HasFormatter } from "./interfaces/HasFormatter.js";
-
-let docOne: HasFormatter;
-let docTwo: HasFormatter;
-
-docOne = new Invoice("yoshi", "web work", 250);
-docTwo = new Payment("mario", "plumbing work", 200);
-
-let docs: HasFormatter[] = [];
-docs.push(docOne);
-docs.push(docTwo);
-
-console.log(docs);
 
 // DOM
 // Must add ! else it may think anchor is HTMLAnchorElement or NULL.
 // ! = "I know this exists"
 const anchor = document.querySelector('a')!;
-
-// classes
-// class Invoice{
-//   // readonly cannot be overwritten
-//   readonly client: string;
-//   // private can only be accessed via class
-//   private details: string;
-//   public amount: number;
-
-//   constructor(c: string, d: string, a: number){
-//     this.client = c;
-//     this.details = d;
-//     this.amount = a;
-//   }
-
-//   // shorthand
-//   constructor(
-//     readonly client: string,
-//     private details: string,
-//     public amount: number
-//   ){}
-
-//   format(){
-//     return `${this.client} owes $${this.amount} for ${this.details}!`;
-//   }
-// }
-
-// const invOne = new Invoice('mario', 'work on the mario website', 250);
-// const invTwo = new Invoice('luigi', 'work on the luigi website', 300);
-
-// let invoices: Invoice[] = [];
-// invoices.push(invOne);
-// invoices.push(invTwo);
-
-// invoices.forEach(inv => {
-//   console.log(inv.client, inv.amount, inv.format());
-// });
 
 const form = document.querySelector('.new-item-form') as HTMLFormElement;
 
@@ -89,6 +41,10 @@ const type = document.querySelector('#type') as HTMLSelectElement;
 const tofrom = document.querySelector('#tofrom') as HTMLInputElement;
 const details = document.querySelector('#details') as HTMLInputElement;
 const amount = document.querySelector('#amount') as HTMLInputElement;
+
+// list template instance
+const ul = document.querySelector('ul')!;
+const list = new ListTemplate(ul);
 
 form.addEventListener('submit', (e: Event) => {
   e.preventDefault();
@@ -100,5 +56,35 @@ form.addEventListener('submit', (e: Event) => {
     doc = new Payment(tofrom.value, details.value, amount.valueAsNumber);
   }
 
-  console.log(doc);
+  list.render(doc, type.value, "end");
 })
+
+// Generics
+
+const addUID = <T extends {name: string}>(obj: T) => {
+  let uid = Math.floor(Math.random() * 100);
+  return {...obj, uid};
+}
+
+let docOne = addUID({name: "yoshi", age: 40});
+//let docTwo = addUID("hello");
+
+console.log(docOne.name);
+
+// with interfaces
+interface Resource<T>{
+  uid: number;
+  resourceName: string;
+  data: T;
+}
+const docThree: Resource<string> = {
+  uid: 1,
+  resourceName: 'person',
+  data: "Abe"
+}
+const docFour: Resource<string[]> = {
+  uid: 2,
+  resourceName: 'shoppingList',
+  data: ['bread', 'milk']
+}
+console.log(docThree, docFour);
