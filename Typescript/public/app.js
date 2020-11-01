@@ -47,5 +47,25 @@ const addUID = (obj) => {
     return Object.assign(Object.assign({}, obj), { uid });
 };
 let docOne = addUID({ name: "yoshi", age: 40 });
-let docTwo = addUID("hello");
+//let docTwo = addUID("hello");
 console.log(docOne.name);
+// with interfaces & Enums
+var ResourceType;
+(function (ResourceType) {
+    ResourceType[ResourceType["BOOK"] = 0] = "BOOK";
+    ResourceType[ResourceType["AUTHOR"] = 1] = "AUTHOR";
+    ResourceType[ResourceType["FILM"] = 2] = "FILM";
+    ResourceType[ResourceType["DIRECTOR"] = 3] = "DIRECTOR";
+    ResourceType[ResourceType["PERSON"] = 4] = "PERSON";
+})(ResourceType || (ResourceType = {}));
+const docThree = {
+    uid: 1,
+    resourceType: ResourceType.BOOK,
+    data: { title: 'Name of the Wind' }
+};
+const docFour = {
+    uid: 2,
+    resourceType: ResourceType.PERSON,
+    data: { name: "Abe", age: 33 }
+};
+console.log(docThree, docFour);

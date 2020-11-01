@@ -299,3 +299,25 @@ const docFour: Resource<string[]> = {
   data: ['bread', 'milk']
 }
 ```
+
+## Enums
+```
+enum ResourceType { BOOK, AUTHOR, FILM, DIRECTOR, PERSON }
+
+interface Resource<T>{
+  uid: number;
+  resourceType: ResourceType; // Declare as ResourceType which is an enum
+  data: T;
+}
+const docThree: Resource<object> = {
+  uid: 1,
+  resourceType: ResourceType.BOOK,
+  data: { title: 'Name of the Wind'}
+}
+const docFour: Resource<object> = {
+  uid: 2,
+  resourceType: ResourceType.PERSON,
+  data: { name: "Abe", age: 33}
+}
+console.log(docThree, docFour);
+```
