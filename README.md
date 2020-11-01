@@ -321,3 +321,29 @@ const docFour: Resource<object> = {
 }
 console.log(docThree, docFour);
 ```
+
+## Tuples
+```
+// Set type for each position
+let tuple: [string, number];
+student = ['Abe', 223434];
+
+// Example
+form.addEventListener('submit', (e: Event) => {
+  e.preventDefault();
+
+  // Set type for each position
+  let values: [string, string, number];
+  values = [tofrom.value, details.value, amount.valueAsNumber];
+  
+  let doc: HasFormatter;
+
+  if(type.value === "invoice"){
+    doc = new Invoice(...values);
+  }else{
+    doc = new Payment(...values);
+  }
+
+  list.render(doc, type.value, "end");
+})
+```
